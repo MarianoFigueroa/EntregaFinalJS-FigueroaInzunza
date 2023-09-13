@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+  <header>
+    <nav>
+        <ul>
+            <li>
+                <a href="Carrito.html">Productos</a>
+                <a href="inicio.html">Ir a Registro</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+    <h1>Registrarse</h1>
+    <hr>
+    <div class="contenedor">
+        <section class="seccionregistro">
+            <form action="#">
+              <div>
+              <label for="nombre" class="informacion">Nombre</label>
+              <input id="nombre" type="text"
+                name="nombre"
+                placeholder="Escriba su nombre">
+            </div>
+            <div>
+              <label for="apellido" class="informacion">Apellido</label>
+              <input type="text"
+              id="apellido"
+              placeholder="Escriba su apellido">
+            </div>
+            <div>
+              <label for="email"  id="mail" class="informacion">Mail</label>
+              <input type="text"
+              id="email"
+              placeholder="Ejemplo: Info@gmail.com">
+              <label for="edad" class="informacion">Edad</label>
+              <input id="edad" type="text"
+              placeholder="Ingrese su edad recuerde ser mayor">
+              <label for="contraseña" class="informacion">Contraseña (Al menos 8 caracteres)</label>
+              <input type="text"
+              id="contraseña"
+              placeholder="Minimo 8 caracteres">
+              <div>
+                <button id="registrar" type="submit">Registrarme</button>
+                <button type="reset">Reiniciar</button>
+              </div>
+            </div>
+            </div>
+            </form>
+          </section>
+        </div>
+    <hr>
+    <script src="./js/java.js"></script>
+</body>
+</html>

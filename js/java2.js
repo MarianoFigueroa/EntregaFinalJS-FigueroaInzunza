@@ -33,3 +33,4 @@ function saludo() {
 }
 
 alert("Gracias por usar la calculadora de productos, vuelva pronto.");
+// no entiendo por que no me aparece el alert con el resultado

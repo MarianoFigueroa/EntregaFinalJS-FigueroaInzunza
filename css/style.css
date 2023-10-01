@@ -48,3 +48,53 @@ section.seccionregistro {
     border-radius: 5px;
     cursor: pointer;
    }
+   .caja-mayor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 300px;
+    width: 100%;
+    padding: auto;
+    justify-content: space-evenly;
+    align-items: center;
+   }
+   
+   .caja {
+    border-radius: 5px;
+    border: 2px solid white;
+    height: 200px;
+    width: 200px;
+   }
+   .img1 {
+    width: 100%;
+    height: 150px;
+   }
+   .img2 {
+    width: 100%;
+    height: 150px;
+   }
+   .img3 {
+    width: 100%;
+    height: 150px;
+   }
+   .precio {
+    text-align: center;
+    
+   }
+
+   div.tablaestilo {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 300px;
+   }
+
+   td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+   }
+   th{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+   }

@@ -18,13 +18,38 @@
             </ul>
         </nav>
     </header>
+    <h1>Productos</h1>
+    <section class="caja-mayor">
+        <div class="caja">
+            <img src="./img/lana.jpg" class="img1" alt="">
+            <p class="precio">$300</p>
+        </div>
+        <div class="caja">
+            <img src="./img/hilos.jpg" class="img2" alt="">
+            <p class="precio">$200</p>
+        </div>
+        <div class="caja">
+            <img src="./img/agujas.jpg" class="img3" alt="">
+            <p class="precio">$50</p>
+        </div>
+
+    </section>
     <h1>Calcular sus compras</h1>
-    <div class="contenedor">
-        <section class="calculadora">
-
-
-        </section>
+    <div id="tablaResultados">
+        <div class="tablaestilo">
+        <table>
+          <thead>
+            <tr>
+              <th>Operación</th>
+              <th>Resultado</th>
+            </tr>
+          </thead>
+          <tbody id="resultadoTabla"><!-- No sé por qué el resultado de la operacion se muestra en una tabla abajo de la operación, no sé si es un problema en el JS o en css| -->
+          </tbody> 
+          <button id="botonFiltro">Filtrar</button>
+        </table>
     </div>
-    <script src="./js/java2.js"></script>
+    </div>
+    <script src="./js/calculadoracarrito.js"></script>
 </body>
 </html>

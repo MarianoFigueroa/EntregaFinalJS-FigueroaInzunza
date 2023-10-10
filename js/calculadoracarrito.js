@@ -4,77 +4,70 @@ function saludo() {
 
 saludo();
 
-function mostrador() {
-  alert("Los productos que tenemos para ofrecer son: Lana $300, Hilos $200 y agujas $50");
+function Producto(nombre, precio) {
+  this.nombre = nombre;
+  this.precio = precio;
 }
 
-mostrador();
+const productos = [
+  new Producto("lana", 300),
+  new Producto("agujas", 50),
+  new Producto("hilos", 200)
+];
 
-let cliente = prompt("¿Quieres sumar tus productos?");
-const operaciones = [];
-const cuentas = [];
+let valorTotal = 0; // con esta variable llevo el seguimiento del total de producto
+const cantidadesProductos = {};
+
+let cliente = prompt("¿Quieres comprar productos? (SI/NO)");
 
 while (cliente.trim().toUpperCase() === "SI") {
-  const productouno = parseFloat(prompt("Si va a comprar lana ingrese 300, si no 0"));
-  const calculo = prompt("Indique el símbolo de operación (+ o -) para proceder");
-  const productodos = parseFloat(prompt("Si va a comprar hilos ingrese 200, si no 0"));
-  const productotres = parseFloat(prompt("Si va a comprar agujas ingrese 50, si no 0"));
-
-  let resultado = NaN;
-  switch (calculo.trim()) {
-    case "+":
-      resultado = productouno + productodos + productotres;
-      break;
-    case "-":
-      resultado = productouno - productodos - productotres;
-      break;
-    default:
-      alert("Indique el símbolo de operación (+ o -) para proceder");
-      break;
-  }
+  const seleccionProducto = prompt("Productos disponibles: lana, agujas, hilos. Elija solo un producto").toLowerCase();
   
-  if (!isNaN(resultado)) {
-    alert("El resultado de la operación es " + resultado);
-    operaciones.push({ operacion: calculo, resultado });
+  const productoSeleccionado = productos.find(producto => producto.nombre === seleccionProducto);
 
-    cuentas.push(resultado);
+  if (productoSeleccionado) {
+    const cantidad = parseInt(prompt(`¿Cuántos ${seleccionProducto} deseas comprar?`));
+
+    if (!isNaN(cantidad) && cantidad >= 0) {
+      if (!cantidadesProductos[seleccionProducto]) {
+        cantidadesProductos[seleccionProducto] = 0;
+      }
+      
+      cantidadesProductos[seleccionProducto] += cantidad;
+      const costoProducto = cantidad * productoSeleccionado.precio;
+      valorTotal += costoProducto; // el valor del producto se va actualizando aca
+      alert(`Has agregado ${cantidad} ${seleccionProducto} a tu carrito. Total del producto: $${costoProducto}`);
+    } else {
+      alert("Cantidad no válida.");
+    }
   } else {
-    alert("Algo ha salido mal, no se pudo realizar la operación");
+    alert("Producto no válido.");
   }
 
-  cliente = prompt("¿Quieres sumar productos?");
+  cliente = prompt("¿Quieres seguir comprando? (SI/NO)");
 }
 
-alert("Gracias por usar la calculadora de productos.");
-
-// hice un Array que muestra las cuentas de todas las operaciones que s ehicieron
-console.log("Las cuentas que se realizaron:", cuentas);
+// muestra en el carrito el total de los productos. el total en el carrito
+alert(`Total del valor de los productos en el carrito: $${valorTotal}`);
 
 // Lo que quise poner acá fue una tabla con resultados, para que se refleje que operación se realizó y su respectivo resultad. También quise darle un valor a cada entidad "lana, agujas, hilos" pero se me resultó muy complejo. Por ahora me quedaré con esta tablita, hasta que más adelante pueda poner un botón en el html que detecte el producto y tenga un valor.
-if (operaciones.length > 0) {
-  const tablaResultados = document.getElementById("resultadoTabla");
-  const tbody = document.createElement("tbody");
 
-  operaciones.forEach((item) => {
-    const { operacion, resultado } = item;
-    const row = document.createElement("tr");
-    const operacionCell = document.createElement("td");
-    const resultadoCell = document.createElement("td");
+const tablaResultados = document.getElementById("tablaResultados");
+const tbody = tablaResultados.querySelector("tbody");
 
-    operacionCell.textContent = operacion;
-    resultadoCell.textContent = resultado;
+if (valorTotal > 0) {
+  const row = document.createElement("tr");
+  const operacionCell = document.createElement("td");
+  const resultadoCell = document.createElement("tbody");
 
-    row.appendChild(operacionCell);
-    row.appendChild(resultadoCell);
-
-    tbody.appendChild(row);
-  });
-
-  tablaResultados.appendChild(tbody);
-  tablaResultados.style.display = "block";
+  operacionCell.textContent = "Valor total de los productos";
+  resultadoCell.textContent = `$${valorTotal}`;
+  row.appendChild(operacionCell);
+  row.appendChild(resultadoCell);
+  tbody.appendChild(row);
 }
 // acá cree un boton para que luego de realizar todas las cuentas, filtre las cuentas de 550 o menores a ellas
-const botonFiltro = document.getElementById("botonFiltro")
+const botonFiltro = document.getElementById("botonFiltro");
 
 botonFiltro.addEventListener("click", function() {
   const valorFiltrado = parseFloat(prompt("Elije el valor para filtrar (550 o menos)"));
@@ -83,7 +76,6 @@ botonFiltro.addEventListener("click", function() {
       return cuenta <= valorFiltrado;
     });
 
-    const tbody = document.querySelector ("#resultadoTabla tbody");
     tbody.innerHTML = "";
 
     cuentasFiltradas.forEach(function (cuenta){
@@ -98,6 +90,6 @@ botonFiltro.addEventListener("click", function() {
       tbody.appendChild(row);
     });
   } else {
-    alert ("Ingrese un valor valido para comenzar el filtrado.")
+    alert ("Ingrese un valor válido para comenzar el filtrado.")
   }
 });

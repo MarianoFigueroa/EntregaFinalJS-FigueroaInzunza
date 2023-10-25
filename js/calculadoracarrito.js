@@ -10,9 +10,9 @@ function Producto(nombre, precio) {
 }
 
 const productos = [
-  new Producto("lana", 300),
-  new Producto("hilos", 200),
-  new Producto("agujas", 50)
+  new Producto("lana", 500),
+  new Producto("hilos", 350),
+  new Producto("agujas", 100)
 ];
 
 let valorTotal = 0;

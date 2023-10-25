@@ -10,10 +10,10 @@
 <body>
     <header>
         <nav>
-            <ul>
-                <li>
-                    <a href="Carrito.html">Productos</a>
-                    <a href="inicio.html">Ir a Registro</a>
+            <ul class="listanav">
+                <li class="listanavv">
+                    <a class="navlink" href="Carrito.html">Productos</a>
+                    <a class="navlink" href="inicio.html">Ir a Registro</a>
                 </li>
             </ul>
         </nav>
@@ -22,15 +22,24 @@
     <section class="caja-mayor">
         <div class="caja">
             <img src="./img/lana.jpg" class="img1" alt="">
-            <p class="precio">$300</p>
+            <p class="precio">$500</p>
+            <button class="comprar" data-producto="lana" data-precio="500">Comprar (0)</button>
+            <label>Cantidad: </label>
+            <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
             <img src="./img/hilos.jpg" class="img2" alt="">
-            <p class="precio">$200</p>
+            <p class="precio">$350</p>
+            <button class="comprar" data-producto="hilos" data-precio="350">Comprar (0)</button>
+            <label>Cantidad: </label>
+            <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
             <img src="./img/agujas.jpg" class="img3" alt="">
-            <p class="precio">$50</p>
+            <p class="precio">$100</p>
+            <button class="comprar" data-producto="agujas" data-precio="100">Comprar (0)</button>
+            <label>Cantidad: </label>
+            <input type="number" class="cantidad-input" min="1" value="1">
         </div>
 
     </section>
@@ -40,15 +49,17 @@
         <table>
           <thead>
             <tr>
-              <th>Operación</th>
-              <th>Resultado</th>
+              <th>Producto</th>
+              <th>Cantidad y precio total</th>
             </tr>
           </thead>
-          <tbody id="resultadoTabla"><!-- No sé por qué el resultado de la operacion se muestra en una tabla abajo de la operación, no sé si es un problema en el JS o en css| -->
+          <tbody id="resultadoTabla">
           </tbody> 
-          <button id="botonFiltro">Filtrar</button>
+          <button id="botonFiltro">Ver mi Carrito</button>
         </table>
+        <button id="borrarCarrito">Borrar Carrito</button>
     </div>
+    
     </div>
     <script src="./js/calculadoracarrito.js"></script>
 </body>

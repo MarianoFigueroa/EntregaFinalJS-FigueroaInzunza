@@ -11,85 +11,99 @@ function Producto(nombre, precio) {
 
 const productos = [
   new Producto("lana", 300),
-  new Producto("agujas", 50),
-  new Producto("hilos", 200)
+  new Producto("hilos", 200),
+  new Producto("agujas", 50)
 ];
 
-let valorTotal = 0; // con esta variable llevo el seguimiento del total de producto
-const cantidadesProductos = {};
+let valorTotal = 0;
+let cantidadesProductos = {};
+const productosAgregados = [];
 
-let cliente = prompt("¿Quieres comprar productos? (SI/NO)");
-
-while (cliente.trim().toUpperCase() === "SI") {
-  const seleccionProducto = prompt("Productos disponibles: lana, agujas, hilos. Elija solo un producto").toLowerCase();
-  
-  const productoSeleccionado = productos.find(producto => producto.nombre === seleccionProducto);
-
-  if (productoSeleccionado) {
-    const cantidad = parseInt(prompt(`¿Cuántos ${seleccionProducto} deseas comprar?`));
-
-    if (!isNaN(cantidad) && cantidad >= 0) {
-      if (!cantidadesProductos[seleccionProducto]) {
-        cantidadesProductos[seleccionProducto] = 0;
-      }
-      
-      cantidadesProductos[seleccionProducto] += cantidad;
-      const costoProducto = cantidad * productoSeleccionado.precio;
-      valorTotal += costoProducto; // el valor del producto se va actualizando aca
-      alert(`Has agregado ${cantidad} ${seleccionProducto} a tu carrito. Total del producto: $${costoProducto}`);
-    } else {
-      alert("Cantidad no válida.");
-    }
-  } else {
-    alert("Producto no válido.");
+document.addEventListener("DOMContentLoaded", function() {
+  // Cargar los detalles de productos desde el almacenamiento local si existen
+  const productosGuardados = JSON.parse(localStorage.getItem("productosGuardados"));
+  if (productosGuardados) {
+    productosAgregados.push(...productosGuardados);
+    actualizarTabla();
   }
 
-  cliente = prompt("¿Quieres seguir comprando? (SI/NO)");
-}
+  const comprarBotones = document.querySelectorAll(".comprar");
+  const cantidadInputs = document.querySelectorAll(".cantidad-input");
 
-// muestra en el carrito el total de los productos. el total en el carrito
-alert(`Total del valor de los productos en el carrito: $${valorTotal}`);
+  comprarBotones.forEach((button, index) => {
+    button.addEventListener("click", function() {
+      const producto = button.getAttribute("data-producto");
+      const precio = parseInt(button.getAttribute("data-precio"));
+      const cantidad = parseInt(cantidadInputs[index].value);
 
-// Lo que quise poner acá fue una tabla con resultados, para que se refleje que operación se realizó y su respectivo resultad. También quise darle un valor a cada entidad "lana, agujas, hilos" pero se me resultó muy complejo. Por ahora me quedaré con esta tablita, hasta que más adelante pueda poner un botón en el html que detecte el producto y tenga un valor.
+      if (!isNaN(cantidad) && cantidad >= 0) {
+        if (!cantidadesProductos[producto]) {
+          cantidadesProductos[producto] = 0;
+        }
 
-const tablaResultados = document.getElementById("tablaResultados");
-const tbody = tablaResultados.querySelector("tbody");
+        cantidadesProductos[producto] += cantidad;
+        const costoProducto = cantidad * precio;
+        valorTotal += costoProducto;
 
-if (valorTotal > 0) {
-  const row = document.createElement("tr");
-  const operacionCell = document.createElement("td");
-  const resultadoCell = document.createElement("tbody");
+        productosAgregados.push({
+          producto: producto,
+          cantidad: cantidad,
+          total: costoProducto
+        });
 
-  operacionCell.textContent = "Valor total de los productos";
-  resultadoCell.textContent = `$${valorTotal}`;
-  row.appendChild(operacionCell);
-  row.appendChild(resultadoCell);
-  tbody.appendChild(row);
-}
-// acá cree un boton para que luego de realizar todas las cuentas, filtre las cuentas de 550 o menores a ellas
-const botonFiltro = document.getElementById("botonFiltro");
+        button.textContent = `Comprar (${cantidadesProductos[producto]}`;
+        alert(`Has agregado ${cantidad} ${producto} a tu carrito. Total del producto: $${costoProducto}`);
 
-botonFiltro.addEventListener("click", function() {
-  const valorFiltrado = parseFloat(prompt("Elije el valor para filtrar (550 o menos)"));
-  if (!isNaN(valorFiltrado)) {
-    const cuentasFiltradas = cuentas.filter(function (cuenta){
-      return cuenta <= valorFiltrado;
+        // Actualizar la tabla y guardar los detalles de productos en el almacenamiento local
+        actualizarTabla();
+      } else {
+        alert("Cantidad no válida.");
+      }
+    });
+  });
+
+  const borrarCarritoButton = document.getElementById("borrarCarrito");
+  borrarCarritoButton.addEventListener("click", function() {
+    valorTotal = 0;
+    cantidadesProductos = {};
+    productosAgregados.length = 0;
+
+    comprarBotones.forEach(button => {
+      const producto = button.getAttribute("data-producto");
+      button.textContent = `Comprar (0)`;
     });
 
-    tbody.innerHTML = "";
+    actualizarTabla();
+    localStorage.removeItem("productosGuardados");
+  });
 
-    cuentasFiltradas.forEach(function (cuenta){
+  function actualizarTabla() {
+    // no se si se puede mejorar alguna codificacion del storage
+    mostrarTabla();
+    localStorage.setItem("productosGuardados", JSON.stringify(productosAgregados));
+  }
+
+  function mostrarTabla() {
+    const resultadoTabla = document.getElementById("resultadoTabla");
+    resultadoTabla.innerHTML = '';
+
+    productosAgregados.forEach(producto => {
       const row = document.createElement("tr");
-      const operacionCell = document.createElement("td");
-      const resultadoCell = document.createElement("td");
+      const productoCell = document.createElement("td");
+      const cantidadCell = document.createElement("td");
+      const totalCell = document.createElement("td");
 
-      operacionCell.textContent = "Filtrado";
-      resultadoCell.textContent = cuenta;
-      row.appendChild(operacionCell);
-      row.appendChild(resultadoCell);
-      tbody.appendChild(row);
+      productoCell.textContent = producto.producto;
+      cantidadCell.textContent = producto.cantidad;
+      totalCell.textContent = `$${producto.total}`;
+
+      row.appendChild(productoCell);
+      row.appendChild(cantidadCell);
+      row.appendChild(totalCell);
+
+      resultadoTabla.appendChild(row);
     });
-  } else {
-    alert ("Ingrese un valor válido para comenzar el filtrado.")
   }
 });
+
+

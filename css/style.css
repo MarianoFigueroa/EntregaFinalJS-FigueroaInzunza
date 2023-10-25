@@ -6,6 +6,26 @@
 body {
     background-color: rgb(112, 107, 107);
 }
+
+header {
+    background-color: blanchedalmond;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+}
+nav {
+    padding: 10px;
+}
+.listanav li {
+    margin: 10px;
+}
+.listanavv {
+    display: flex;
+}
+a {
+    list-style: none;
+}
 h1  {
     justify-content: center;
     display: flex;
@@ -62,7 +82,7 @@ section.seccionregistro {
    .caja {
     border-radius: 5px;
     border: 2px solid white;
-    height: 200px;
+    height: 220px;
     width: 200px;
    }
    .img1 {

@@ -29,7 +29,8 @@ function saludo() {
     alert("Algo ha salido mal, no se pudo realizar la operación");
   }
 
-  cliente = prompt("¿Quieres sumar productos?"); 
+function validarCampos(nombre, apellido, email, telefono, contrasena) {
+  return nombre && apellido && email && telefono && contrasena;
 }
 
 alert("Gracias por usar la calculadora de productos, vuelva pronto.");

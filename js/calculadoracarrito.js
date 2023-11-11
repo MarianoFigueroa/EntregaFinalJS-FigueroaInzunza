@@ -19,13 +19,10 @@ let valorTotal = 0;
 let cantidadesProductos = {};
 const productosAgregados = [];
 
-document.addEventListener("DOMContentLoaded", function() {
-  // Cargar los detalles de productos desde el almacenamiento local si existen
-  const productosGuardados = JSON.parse(localStorage.getItem("productosGuardados"));
-  if (productosGuardados) {
-    productosAgregados.push(...productosGuardados);
-    actualizarTabla();
-  }
+document.addEventListener("DOMContentLoaded", function () {
+  const productosGuardados = JSON.parse(localStorage.getItem("productosGuardados")) || [];
+  productosAgregados.push(...productosGuardados);
+  actualizarTabla();
 
   const comprarBotones = document.querySelectorAll(".comprar");
   const cantidadInputs = document.querySelectorAll(".cantidad-input");
@@ -50,11 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
           cantidad: cantidad,
           total: costoProducto
         });
-
-        button.textContent = `Comprar (${cantidadesProductos[producto]}`;
         alert(`Has agregado ${cantidad} ${producto} a tu carrito. Total del producto: $${costoProducto}`);
-
-        // Actualizar la tabla y guardar los detalles de productos en el almacenamiento local
         actualizarTabla();
       } else {
         alert("Cantidad no válida.");
@@ -70,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     comprarBotones.forEach(button => {
       const producto = button.getAttribute("data-producto");
-      button.textContent = `Comprar (0)`;
     });
 
     actualizarTabla();
@@ -78,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   function actualizarTabla() {
-    // no se si se puede mejorar alguna codificacion del storage
     mostrarTabla();
     localStorage.setItem("productosGuardados", JSON.stringify(productosAgregados));
   }

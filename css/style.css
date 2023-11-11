@@ -70,7 +70,6 @@ section.seccionregistro {
    }
    .caja-mayor {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     height: 300px;
     width: 100%;

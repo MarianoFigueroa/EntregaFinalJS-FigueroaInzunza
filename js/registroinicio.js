@@ -15,7 +15,7 @@ document.getElementById("registrar").addEventListener("click", function () {
       contrasena: contrasena
     };
 
-    fetch("https://jsonplaceholder.typicode.com/todos/1", {
+    fetch("https://jsonplaceholder.typicode.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

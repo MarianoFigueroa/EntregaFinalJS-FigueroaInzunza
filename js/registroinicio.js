@@ -1,37 +1,46 @@
-function saludo() {
-    alert("Bienvenido a la sección de compras");
-  }
-  
-  saludo();
 
-  let cliente = prompt("¿Quieres sumar tus productos?");
-  while (cliente.trim().toUpperCase() === "SI") {
-    const productouno = parseFloat(prompt("Ingrese el precio del primer producto"));
-    const calculo = prompt("Indique el símbolo de operación (+ o -) para proceder");
-    const productodos = parseFloat(prompt("Ingrese el precio del segundo producto")
-    );
-  let resultado = NaN;
-  switch (calculo.trim()) {
-    case "+":
-      resultado = sumar(productouno, productodos);
-      break;
-    case "-":
-      resultado = restar(productouno, productodos);
-      break;
-    default:
-      alert("Indique el símbolo de operación (+ o -) para proceder");
-      break;
-  }
-  if (!isNaN(resultado)) {
-    alert(
-      "El resultado de sus productos es " + resultado);
+document.getElementById("registrar").addEventListener("click", function () {
+  const nombre = document.getElementById("nombre").value.trim();
+  const apellido = document.getElementById("apellido").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  const contrasena = document.getElementById("contraseña").value.trim();
+
+  if (validarCampos(nombre, apellido, email, telefono, contrasena)) {
+    const datosUsuario = {
+      nombre: nombre,
+      apellido: apellido,
+      email: email,
+      telefono: telefono,
+      contrasena: contrasena
+    };
+
+    fetch("https://jsonplaceholder.typicode.com/todos/1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(datosUsuario)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Respuesta del servidor:", data);
+        Swal.fire("¡Se ha registrado exitosamente!");
+        window.location.href = "./iniciarsesion.html";
+      })
+      .catch(error => {
+        console.error("Error al realizar la solicitud:", error);
+        Swal.fire({
+          title: "Hubo un error",
+          text: "Intente rellenar los campos nuevamente, si no puede contactenos via info@gmail.com",
+          icon: "error"
+        });
+      });
   } else {
-    alert("Algo ha salido mal, no se pudo realizar la operación");
+    Swal.fire("Debe completar todos los campos del registro");
   }
+});
 
 function validarCampos(nombre, apellido, email, telefono, contrasena) {
   return nombre && apellido && email && telefono && contrasena;
 }
-
-alert("Gracias por usar la calculadora de productos, vuelva pronto.");
-// no entiendo por que no me aparece el alert con el resultado

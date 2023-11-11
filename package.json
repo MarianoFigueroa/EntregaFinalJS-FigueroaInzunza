@@ -1,0 +1,27 @@
+{
+
+  "name": "proyecto-js",
+  "description": "Pre entrega numero 1 de JS\r <!---->",
+  "version": "1.0.0",
+  "main": "inicio.html",
+  "dependencies": {
+    "bootstrap": "^5.3.2"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gihub.com/MarianoFigueroa/EntreFinalJS-FigueroaInzunza"
+  },
+  "keywords": [
+    "curso",
+    "javascript",
+    "aprendizaje",
+    "proyecto"
+  ],
+  "author": "Mariano Figueroa",
+  "license": "ISC"
+}

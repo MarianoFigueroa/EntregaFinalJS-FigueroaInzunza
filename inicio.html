@@ -3,60 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
+    <title>Tienda</title>
     <link rel="stylesheet" href="./css/style.css">
 
 </head>
 <body>
   <header>
     <nav>
-        <ul>
-            <li>
-                <a href="Carrito.html">Productos</a>
-                <a href="inicio.html">Ir a Registro</a>
+        <ul class="listanav">
+            <li class="listanavv">
+                <a class="navlink" href="Carrito.html">Productos</a>
+                <span class="separador"></span>
+                <a class="navlink" href="inicio.html">Ir a Registro</a>
             </li>
         </ul>
     </nav>
+    <div id="registroExitoso" style="display: none; color: green;">
+      Se ha registrado correctamente.
+    </div>
 </header>
     <h1>Registrarse</h1>
     <hr>
     <div class="contenedor">
         <section class="seccionregistro">
-            <form action="#">
-              <div>
+          <form id="registroForm" action="#">
+            <div>
               <label for="nombre" class="informacion">Nombre</label>
-              <input id="nombre" type="text"
-                name="nombre"
-                placeholder="Escriba su nombre">
+              <input id="nombre" type="text" name="nombre" placeholder="Escriba su nombre" required>
             </div>
             <div>
               <label for="apellido" class="informacion">Apellido</label>
-              <input type="text"
-              id="apellido"
-              placeholder="Escriba su apellido">
+              <input type="text" id="apellido" placeholder="Escriba su apellido" required>
             </div>
             <div>
-              <label for="email"  id="mail" class="informacion">Mail</label>
-              <input type="text"
-              id="email"
-              placeholder="Ejemplo: Info@gmail.com">
-              <label for="edad" class="informacion">Edad</label>
-              <input id="edad" type="text"
-              placeholder="Ingrese su edad recuerde ser mayor">
+              <label for="email" id="mail" class="informacion">Mail</label>
+              <input type="text" id="email" placeholder="Ejemplo: info@gmail.com" required>
+              <label for="telefono" class="informacion">Teléfono</label>
+              <input id="telefono" type="tel" placeholder="Ingrese su número de teléfono" required>
               <label for="contraseña" class="informacion">Contraseña (Al menos 8 caracteres)</label>
-              <input type="text"
-              id="contraseña"
-              placeholder="Minimo 8 caracteres">
+              <input type="password" id="contraseña" placeholder="Minimo 8 caracteres" required>
               <div>
-                <button id="registrar" type="submit">Registrarme</button>
+                <button id="registrar" type="button">Registrarme</button>
                 <button type="reset">Reiniciar</button>
+                <button type="button" onclick="location.href='./iniciarsesion.html'">Ya tengo cuenta</button>
               </div>
             </div>
-            </div>
-            </form>
+          </form>
           </section>
         </div>
-    <hr>
+    <hr>      
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/registroinicio.js"></script>
+
+  
 </body>
 </html>

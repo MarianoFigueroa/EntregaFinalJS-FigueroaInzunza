@@ -1,8 +1,9 @@
-function saludo() {
-  alert("Bienvenido a la sección de compras");
-}
-
-saludo();
+Swal.fire({
+  icon: "info",
+  title: "Bienvenido a la Tienda",
+  text: "Registrese para tener una mejor experiencia, si ya está registrado inicie sesion.",
+  footer: '<a href="inicio.html">Ir a Registro</a>'
+});
 
 function Producto(nombre, precio) {
   this.nombre = nombre;
@@ -12,12 +13,22 @@ function Producto(nombre, precio) {
 const productos = [
   new Producto("lana", 500),
   new Producto("hilos", 350),
-  new Producto("agujas", 100)
+  new Producto("agujas", 100),
+  new Producto("agujastejer", 200),
+  new Producto("maquinacoser", 2000),
+  new Producto("telajean", 300),
+  new Producto("telanotejida", 250),
+  new Producto("hilosisal", 100),
+  new Producto("telasweater", 400),
+  new Producto("relleno", 125)
 ];
 
 let valorTotal = 0;
 let cantidadesProductos = {};
 const productosAgregados = [];
+
+const tiempoDeInactividad = 300000;
+let timeoutID;
 
 document.addEventListener("DOMContentLoaded", function () {
   const productosGuardados = JSON.parse(localStorage.getItem("productosGuardados")) || [];
@@ -28,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cantidadInputs = document.querySelectorAll(".cantidad-input");
 
   comprarBotones.forEach((button, index) => {
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
       const producto = button.getAttribute("data-producto");
       const precio = parseInt(button.getAttribute("data-precio"));
       const cantidad = parseInt(cantidadInputs[index].value);
@@ -47,8 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
           cantidad: cantidad,
           total: costoProducto
         });
-        alert(`Has agregado ${cantidad} ${producto} a tu carrito. Total del producto: $${costoProducto}`);
         actualizarTabla();
+        resetearTemporizador();
       } else {
         alert("Cantidad no válida.");
       }
@@ -56,17 +67,19 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const borrarCarritoButton = document.getElementById("borrarCarrito");
-  borrarCarritoButton.addEventListener("click", function() {
+  borrarCarritoButton.addEventListener("click", function () {
     valorTotal = 0;
     cantidadesProductos = {};
     productosAgregados.length = 0;
 
     comprarBotones.forEach(button => {
       const producto = button.getAttribute("data-producto");
+      button.textContent = `Comprar (0)`;
     });
 
     actualizarTabla();
     localStorage.removeItem("productosGuardados");
+    resetearTemporizador();
   });
 
   function actualizarTabla() {
@@ -78,22 +91,58 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultadoTabla = document.getElementById("resultadoTabla");
     resultadoTabla.innerHTML = '';
 
-    productosAgregados.forEach(producto => {
+    productosAgregados.forEach((producto, index) => {
       const row = document.createElement("tr");
       const productoCell = document.createElement("td");
       const cantidadCell = document.createElement("td");
       const totalCell = document.createElement("td");
+      const eliminarCell = document.createElement("td");
 
       productoCell.textContent = producto.producto;
       cantidadCell.textContent = producto.cantidad;
       totalCell.textContent = `$${producto.total}`;
 
+      const eliminarButton = document.createElement("button");
+      eliminarButton.textContent = "Eliminar";
+      eliminarButton.addEventListener("click", function () {
+        eliminarProducto(index);
+      });
+
+      eliminarCell.appendChild(eliminarButton);
+
       row.appendChild(productoCell);
       row.appendChild(cantidadCell);
       row.appendChild(totalCell);
+      row.appendChild(eliminarCell);
 
       resultadoTabla.appendChild(row);
     });
+  }
+
+  function eliminarProducto(index) {
+    const productoEliminado = productosAgregados.splice(index, 1)[0];
+    valorTotal -= productoEliminado.total;
+    cantidadesProductos[productoEliminado.producto] -= productoEliminado.cantidad;
+
+    actualizarTabla();
+    resetearTemporizador();
+  }
+
+  function resetearTemporizador() {
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(function () {
+      valorTotal = 0;
+      cantidadesProductos = {};
+      productosAgregados.length = 0;
+
+      comprarBotones.forEach(button => {
+        const producto = button.getAttribute("data-producto");
+        button.textContent = `Comprar (0)`;
+      });
+
+      actualizarTabla();
+      localStorage.removeItem("productosGuardados");
+    }, tiempoDeInactividad);
   }
 });
 

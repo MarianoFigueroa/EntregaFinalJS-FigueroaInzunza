@@ -20,11 +20,15 @@ nav {
 .listanav li {
     margin: 10px;
 }
+
 .listanavv {
     display: flex;
 }
 a {
     list-style: none;
+}
+.separador {
+    margin: 0 10px; 
 }
 h1  {
     justify-content: center;
@@ -71,14 +75,19 @@ section.seccionregistro {
    .caja-mayor {
     display: flex;
     flex-wrap: wrap;
-    height: 300px;
-    width: 100%;
-    padding: auto;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    gap: 20px;
    }
-   
+   .informacion {
+    display: block;
+    margin-bottom: 5px;
+  }
+  #contraseña {
+    width: 100%;
+  }
    .caja {
+    padding: 20px;
     border-radius: 5px;
     border: 2px solid white;
     height: 220px;
@@ -116,4 +125,4 @@ section.seccionregistro {
     border: 1px solid black;
     padding: 8px;
     text-align: left;
-   }
+   } 

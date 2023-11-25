@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 <body>
@@ -14,7 +15,7 @@
             <li class="listanavv">
                 <a class="navlink" href="Carrito.html">Productos</a>
                 <span class="separador"></span>
-                <a class="navlink" href="inicio.html">Ir a Registro</a>
+                <a class="navlink" href="../inicio.html">Ir a Registro</a>
             </li>
         </ul>
     </nav>
@@ -25,10 +26,10 @@
         <section class="seccioninicio">
           <form id="inicioSesionForm" action="#">
             <div>
-              <label for="email" class="informacion">Mail</label>
-              <input type="text" id="email" placeholder="Ejemplo: info@gmail.com" required>
-              <label for="contraseña" class="informacion">Contraseña</label>
-              <input type="password" id="contraseña" placeholder="Ingrese su contraseña" required>
+              <label for="email" class="informacion"><i class='bx bx-user'></i>Mail</label>
+              <input type="text" id="emailiniciar" placeholder="Ejemplo: info@gmail.com" required>
+              <label for="contraseña" class="informacion"><i class='bx bxs-lock-alt' ></i>Contraseña</label>
+              <input type="password" id="contrasenainiciar" placeholder="Ingrese su contraseña" required>
               <button id="iniciarSesion" type="submit">Iniciar Sesión</button>
             </div>
           </form>
@@ -37,6 +38,6 @@
           </section>
         </div>
     <hr>
-    <script src="./js/registroinicio.js"></script>
+    <script src="../js/registroinicio.js"></script>
 </body>
 </html>

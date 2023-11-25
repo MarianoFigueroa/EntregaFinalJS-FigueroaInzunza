@@ -12,15 +12,15 @@
     <nav>
         <ul class="listanav">
             <li class="listanavv">
-                <a class="navlink" href="Carrito.html">Productos</a>
+                <a class="navlink" href="pages/carrito.html">Productos</a>
                 <span class="separador"></span>
                 <a class="navlink" href="inicio.html">Ir a Registro</a>
+                <span class="separador"></span>
+                <a class="navlink" href="pages/iniciarsesion.html">Ir a iniciar sesion</a>
             </li>
         </ul>
     </nav>
-    <div id="registroExitoso" style="display: none; color: green;">
-      Se ha registrado correctamente.
-    </div>
+
 </header>
     <h1>Registrarse</h1>
     <hr>
@@ -36,16 +36,16 @@
               <input type="text" id="apellido" placeholder="Escriba su apellido" required>
             </div>
             <div>
-              <label for="email" id="mail" class="informacion">Mail</label>
+              <label for="email" class="informacion">Mail</label>
               <input type="text" id="email" placeholder="Ejemplo: info@gmail.com" required>
               <label for="telefono" class="informacion">Teléfono</label>
               <input id="telefono" type="tel" placeholder="Ingrese su número de teléfono" required>
-              <label for="contraseña" class="informacion">Contraseña (Al menos 8 caracteres)</label>
-              <input type="password" id="contraseña" placeholder="Minimo 8 caracteres" required>
+              <label for="contrasena" class="informacion">Contraseña (Al menos 8 caracteres)</label>
+              <input type="password" id="contrasena" placeholder="Minimo 8 caracteres" required>
               <div>
                 <button id="registrar">Registrar</button>
                 <button type="reset">Reiniciar</button>
-                <button type="button" onclick="location.href='./iniciarsesion.html'">Ya tengo cuenta</button>
+                <button type="button" onclick="location.href='../pages/iniciarsesion.html'">Ya tengo cuenta</button>
               </div>
             </div>
           </form>

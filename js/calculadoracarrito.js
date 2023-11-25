@@ -1,8 +1,8 @@
 Swal.fire({
   icon: "info",
   title: "Bienvenido a la Tienda",
-  text: "Registrese para tener una mejor experiencia, si ya está registrado inicie sesion.",
-  footer: '<a href="inicio.html">Ir a Registro</a>'
+  text: "Regístrese para tener una mejor experiencia, si ya está registrado inicie sesión.",
+  footer: '<a href="../inicio.html">Ir a Registro</a>'
 });
 
 function Producto(nombre, precio) {
@@ -74,12 +74,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     comprarBotones.forEach(button => {
       const producto = button.getAttribute("data-producto");
-      button.textContent = `Comprar (0)`;
+      button.textContent = "Comprar";
     });
 
     actualizarTabla();
     localStorage.removeItem("productosGuardados");
     resetearTemporizador();
+  });
+
+  const finalizarCarritoBoton = document.getElementById("finalizarCarrito");
+  finalizarCarritoBoton.addEventListener("click", function () {
+    const totalGasto = valorTotal;
+    valorTotal = 0;
+    cantidadesProductos = {};
+    productosAgregados.length = 0;
+
+    comprarBotones.forEach(button => {
+      const producto = button.getAttribute("datos-del-producto");
+      button.textContent = "Comprar";
+    });
+
+    actualizarTabla();
+    localStorage.removeItem("productosGuardados");
+    resetearTemporizador();
+
+    Swal.fire({
+      icon: "success",
+      title: "Su compra se ha finalizado.",
+      text: "Has gastado un total de $" + totalGasto + ". ¡Gracias por confiar, vuelva pronto!"
+    });
   });
 
   function actualizarTabla() {
@@ -89,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function mostrarTabla() {
     const resultadoTabla = document.getElementById("resultadoTabla");
-    resultadoTabla.innerHTML = '';
+    resultadoTabla.innerHTML = "";
 
     productosAgregados.forEach((producto, index) => {
       const row = document.createElement("tr");
@@ -100,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       productoCell.textContent = producto.producto;
       cantidadCell.textContent = producto.cantidad;
-      totalCell.textContent = `$${producto.total}`;
+      totalCell.textContent = "$${producto.total}";
 
       const eliminarButton = document.createElement("button");
       eliminarButton.textContent = "Eliminar";
@@ -137,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       comprarBotones.forEach(button => {
         const producto = button.getAttribute("data-producto");
-        button.textContent = `Comprar (0)`;
+        button.textContent = "Comprar ";
       });
 
       actualizarTabla();

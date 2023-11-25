@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
@@ -12,11 +12,11 @@
         <nav>
             <ul class="listanav">
                 <li class="listanavv">
-                    <a class="navlink" href="Carrito.html">Productos</a>
+                    <a class="navlink" href="carrito.html">Productos</a>
                     <span class="separador"></span>
-                    <a class="navlink" href="inicio.html">Ir a Registro</a>
+                    <a class="navlink" href="../inicio.html">Ir a Registro</a>
                     <span class="separador"></span>
-                    <a class="navlink" href="iniciosesion.html">Ir a Iniciar Sesion</a>
+                    <a class="navlink" href="iniciarsesion.html">Ir a Iniciar Sesion</a>
                 </li>
             </ul>
         </nav>
@@ -24,70 +24,70 @@
     <h1>Productos</h1>
     <section class="caja-mayor">
         <div class="caja">
-            <img src="./img/lana.jpg" class="img1" alt="">
+            <img src="../img/lana.jpg" class="img1" alt="">
             <p class="precio">Lana: $500</p>
             <button class="comprar" data-producto="lana" data-precio="500">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/hilos.jpg" class="img2" alt="">
+            <img src="../img/hilos.jpg" class="img2" alt="">
             <p class="precio">Hilo: $350</p>
             <button class="comprar" data-producto="hilos" data-precio="350">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/agujas.jpg" class="img3" alt="">
+            <img src="../img/agujas.jpg" class="img3" alt="">
             <p class="precio">Agujas: $100</p>
             <button class="comprar" data-producto="agujas" data-precio="100">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/agujastejer.jpg" class="img3" alt="">
+            <img src="../img/agujastejer.jpg" class="img3" alt="">
             <p class="precio">Agujas de tejer: $200</p>
             <button class="comprar" data-producto="agujas" data-precio="100">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/maquinacoser.jpg" class="img3" alt="">
+            <img src="../img/maquinacoser.jpg" class="img3" alt="">
             <p class="precio">Maquina de coser: $2000</p>
             <button class="comprar" data-producto="agujas" data-precio="100">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/telajean.jpg" class="img3" alt="">
+            <img src="../img/telajean.jpg" class="img3" alt="">
             <p class="precio">Tela de jean: $300</p>
             <button class="comprar" data-producto="agujas" data-precio="100">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/telanotejida.jpg" class="img3" alt="">
+            <img src="../img/telanotejida.jpg" class="img3" alt="">
             <p class="precio">Tela no tejida: $250</p>
             <button class="comprar" data-producto="agujas" data-precio="100">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/hilosisal.jpg" class="img3" alt="">
+            <img src="../img/hilosisal.jpg" class="img3" alt="">
             <p class="precio">Hilo sisal: $100</p>
             <button class="comprar" data-producto="agujas" data-precio="100">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/telasweater.jpg" class="img3" alt="">
+            <img src="../img/telasweater.jpg" class="img3" alt="">
             <p class="precio">Tela de sweater: $400</p>
             <button class="comprar" data-producto="agujas" data-precio="100">Añadir</button>
             <label>Cantidad: </label>
             <input type="number" class="cantidad-input" min="1" value="1">
         </div>
         <div class="caja">
-            <img src="./img/relleno.jpg" class="img3" alt="">
+            <img src="../img/relleno.jpg" class="img3" alt="">
             <p class="precio">Relleno de algodon: $125</p>
             <button class="comprar" data-producto="agujas" data-precio="100">Añadir</button>
             <label>Cantidad: </label>
@@ -111,10 +111,11 @@
           <button id="botonFiltro">Ver mi Carrito</button>
         </table>
         <button id="borrarCarrito">Borrar Carrito</button>
+        <button id="finalizarCarrito">Finalizar compra</button>
     </div>
     
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./js/calculadoracarrito.js"></script>
+    <script src="../js/calculadoracarrito.js"></script>
 </body>
 </html>

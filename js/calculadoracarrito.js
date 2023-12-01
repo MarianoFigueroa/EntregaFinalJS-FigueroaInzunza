@@ -14,12 +14,12 @@ const productos = [
   new Producto("lana", 500),
   new Producto("hilos", 350),
   new Producto("agujas", 100),
-  new Producto("agujastejer", 200),
-  new Producto("maquinacoser", 2000),
-  new Producto("telajean", 300),
-  new Producto("telanotejida", 250),
-  new Producto("hilosisal", 100),
-  new Producto("telasweater", 400),
+  new Producto("agujas para tejer", 200),
+  new Producto("maquina de coser", 2000),
+  new Producto("tela de jean", 300),
+  new Producto("tela no tejida", 250),
+  new Producto("hilo sisal", 100),
+  new Producto("tela sweater", 400),
   new Producto("relleno", 125)
 ];
 
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       productoCell.textContent = producto.producto;
       cantidadCell.textContent = producto.cantidad;
-      totalCell.textContent = "$${producto.total}";
+      totalCell.textContent = "$" + producto.total;
 
       const eliminarButton = document.createElement("button");
       eliminarButton.textContent = "Eliminar";

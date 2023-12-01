@@ -28,7 +28,7 @@ document.getElementById("registrar").addEventListener("click", function(e) {
     console.log("Respuesta del servidor:", data);
     Swal.fire("¡El registro se ha realizado con exito!");
     setTimeout(function() {
-      window.location.href = "../pages/iniciarsesion.html";
+      window.location.href = "./inicio.html";
     }, 2000);
   })
   .catch(error =>{

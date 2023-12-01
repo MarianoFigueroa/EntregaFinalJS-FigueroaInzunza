@@ -28,7 +28,7 @@ document.getElementById("registrar").addEventListener("click", function(e) {
     console.log("Respuesta del servidor:", data);
     Swal.fire("¡El registro se ha realizado con exito!");
     setTimeout(function() {
-      window.location.href = "./inicio.html";
+      window.location.href = "./pages/carrito.html";
     }, 2000);
   })
   .catch(error =>{
